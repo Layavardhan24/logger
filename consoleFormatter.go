@@ -38,13 +38,11 @@ func (cf *ConsoleFormatter) Output(line LogLineHandler) []byte {
 		correlation = formatCorrelationElements(line.GetCorrelation())
 	}
 
-	return []byte(
-		fmt.Sprintf(formatColoredString,
+	return fmt.Appendf(nil, formatColoredString,
 			levelColor, level,
 			timestamp, loggerName, correlation,
 			message, args,
-		),
-	)
+		)
 }
 
 // formatArgs iterates through the provided arguments displaying the argument name and after that its value

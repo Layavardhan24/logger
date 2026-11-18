@@ -28,13 +28,11 @@ func (pf *PlainFormatter) Output(line LogLineHandler) []byte {
 		correlation = formatCorrelationElements(line.GetCorrelation())
 	}
 
-	return []byte(
-		fmt.Sprintf(formatPlainString,
+	return fmt.Appendf(nil, formatPlainString,
 			level,
 			timestamp, loggerName, correlation,
 			message, args,
-		),
-	)
+		)
 }
 
 // formatArgsNoAnsi iterates through the provided arguments displaying the argument name and after that its value
